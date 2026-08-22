@@ -1,0 +1,6 @@
+{
+  "name": "AuraGen - Generative Art Studio",
+  "description": "Estúdio profissional de arte generativa abstrata com múltiplos algoritmos matemáticos (Flow Fields, Strange Attractors, Sacred Geometry, Reaction-Diffusion, Fractal Flames, Voronoi), controles interativos em tempo real e exportação em alta resolução (até 8K e SVG). Compatível com mobile, desktop e pronto para GitHub Pages.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
