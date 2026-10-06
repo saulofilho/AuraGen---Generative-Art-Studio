@@ -162,6 +162,7 @@ export interface ExportOptions {
   scaleFactor: 1 | 2 | 4 | 8; // 1x, 2K, 4K, 8K
   includeWatermark: boolean;
   watermarkText: string;
+  watermarkIconUrl?: string;
   presetName: string;
 }
 

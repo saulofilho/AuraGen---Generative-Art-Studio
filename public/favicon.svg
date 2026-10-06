@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="65%" fx="30%" fy="30%">
+      <stop offset="0%" stop-color="#141428" />
+      <stop offset="60%" stop-color="#0a0a14" />
+      <stop offset="100%" stop-color="#040407" />
+    </radialGradient>
+
+    <!-- Neon Gradients -->
+    <linearGradient id="cyanPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f5ff" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#d946ef" />
+    </linearGradient>
+
+    <linearGradient id="fireAura" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="50%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <linearGradient id="ringGold" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+
+    <!-- Glow Filters -->
+    <filter id="auraGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur1" />
+      <feGaussianBlur stdDeviation="24" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background container with sleek squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect width="504" height="504" x="4" y="4" rx="108" fill="none" stroke="url(#cyanPurple)" stroke-width="3" stroke-opacity="0.35" />
+
+  <!-- Ambient background glow center -->
+  <circle cx="256" cy="256" r="140" fill="#6366f1" opacity="0.18" filter="url(#auraGlow)" />
+  <circle cx="256" cy="256" r="80" fill="#00f5ff" opacity="0.22" filter="url(#auraGlow)" />
+
+  <!-- Generative Harmonic Orbitals (Epicycles & Lissajous) -->
+  <g filter="url(#auraGlow)" opacity="0.85">
+    <ellipse cx="256" cy="256" rx="170" ry="68" fill="none" stroke="url(#cyanPurple)" stroke-width="4.5" transform="rotate(-30 256 256)" stroke-dasharray="8 4" />
+    <ellipse cx="256" cy="256" rx="170" ry="68" fill="none" stroke="url(#fireAura)" stroke-width="4.5" transform="rotate(30 256 256)" stroke-dasharray="12 6" />
+    <ellipse cx="256" cy="256" rx="170" ry="68" fill="none" stroke="url(#ringGold)" stroke-width="4" transform="rotate(90 256 256)" />
+  </g>
+
+  <!-- Sacred Geometry Core: Flower / Mandala Petals -->
+  <g stroke="url(#cyanPurple)" stroke-width="2.5" fill="none" opacity="0.65" transform="translate(256 256)">
+    <circle cx="0" cy="0" r="110" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="4 6" />
+    <circle cx="0" cy="0" r="75" stroke-width="2" stroke-opacity="0.6" />
+    
+    <!-- 8 Symmetric Flow Petals -->
+    <path d="M 0,-75 C 35,-40 35,40 0,75 C -35,40 -35,-40 0,-75 Z" />
+    <path d="M 0,-75 C 35,-40 35,40 0,75 C -35,40 -35,-40 0,-75 Z" transform="rotate(45)" />
+    <path d="M 0,-75 C 35,-40 35,40 0,75 C -35,40 -35,-40 0,-75 Z" transform="rotate(90)" />
+    <path d="M 0,-75 C 35,-40 35,40 0,75 C -35,40 -35,-40 0,-75 Z" transform="rotate(135)" />
+  </g>
+
+  <!-- Central Luminous Singularity (Generative Spark) -->
+  <g filter="url(#softGlow)" transform="translate(256 256)">
+    <!-- 4-point Diamond Starburst -->
+    <path d="M 0,-52 Q 0,0 52,0 Q 0,0 0,52 Q 0,0 -52,0 Q 0,0 0,-52 Z" fill="url(#cyanPurple)" />
+    <path d="M 0,-32 Q 0,0 32,0 Q 0,0 0,32 Q 0,0 -32,0 Q 0,0 0,-32 Z" fill="#ffffff" opacity="0.95" />
+    <circle cx="0" cy="0" r="8" fill="#ffffff" />
+  </g>
+
+  <!-- Floating Particles / Stardust -->
+  <g fill="#00f5ff" opacity="0.8">
+    <circle cx="160" cy="180" r="3.5" filter="url(#softGlow)" />
+    <circle cx="340" cy="150" r="4.5" fill="#f43f5e" filter="url(#softGlow)" />
+    <circle cx="380" cy="300" r="3" fill="#a855f7" filter="url(#softGlow)" />
+    <circle cx="140" cy="340" r="4" fill="#38bdf8" filter="url(#softGlow)" />
+    <circle cx="280" cy="390" r="3.5" fill="#ec4899" filter="url(#softGlow)" />
+    <circle cx="230" cy="110" r="2.5" fill="#fbbf24" filter="url(#softGlow)" />
+  </g>
+</svg>

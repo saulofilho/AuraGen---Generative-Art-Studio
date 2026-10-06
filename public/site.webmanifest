@@ -1,0 +1,21 @@
+{
+  "name": "AuraGen Studio - Generative Art Studio",
+  "short_name": "AuraGen",
+  "description": "Estúdio de arte generativa abstrata com múltiplos algoritmos matemáticos e exportação em alta resolução",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07070b",
+  "theme_color": "#07070b",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

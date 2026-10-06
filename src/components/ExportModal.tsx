@@ -35,6 +35,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   const [customHeight, setCustomHeight] = useState(3840);
   const [includeWatermark, setIncludeWatermark] = useState(false);
   const [watermarkText, setWatermarkText] = useState('AuraGen Generative Studio');
+  const [watermarkIconUrl, setWatermarkIconUrl] = useState('./favicon.svg');
 
   const [isExporting, setIsExporting] = useState(false);
   const [progressPercent, setProgressPercent] = useState(0);
@@ -107,6 +108,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           scaleFactor: resolutionTier === '8k' ? 8 : resolutionTier === '4k' ? 4 : 2,
           includeWatermark,
           watermarkText,
+          watermarkIconUrl: includeWatermark ? watermarkIconUrl : undefined,
           presetName: config.name
         };
 
@@ -263,6 +265,96 @@ export const ExportModal: React.FC<ExportModalProps> = ({
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* Watermark & Studio Icon Branding */}
+          <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold text-zinc-300">
+                  Assinatura & Ícone do Estúdio (Marca d'água)
+                </span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono">
+                  Opcional
+                </span>
+              </div>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={includeWatermark}
+                  onChange={(e) => setIncludeWatermark(e.target.checked)}
+                  className="sr-only peer"
+                />
+                <div className="w-9 h-5 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-cyan-600"></div>
+              </label>
+            </div>
+
+            {includeWatermark && (
+              <div className="space-y-3 pt-1 border-t border-zinc-800/60 animate-fadeIn">
+                <div className="space-y-1">
+                  <label className="text-[11px] font-medium text-zinc-400">Texto da Assinatura:</label>
+                  <input
+                    type="text"
+                    value={watermarkText}
+                    onChange={(e) => setWatermarkText(e.target.value)}
+                    placeholder="Ex: AuraGen Generative Studio"
+                    className="w-full bg-zinc-950 border border-zinc-700/80 rounded-lg px-3 py-1.5 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-cyan-500"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <label className="text-[11px] font-medium text-zinc-400">URL / Caminho do Ícone (Icon Path URL):</label>
+                    <span className="text-[10px] text-zinc-500">Caminho relativo ou URL externa</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      <input
+                        type="text"
+                        value={watermarkIconUrl}
+                        onChange={(e) => setWatermarkIconUrl(e.target.value)}
+                        placeholder="./favicon.svg"
+                        className="w-full bg-zinc-950 border border-zinc-700/80 rounded-lg px-3 py-1.5 text-xs text-zinc-200 font-mono placeholder-zinc-500 focus:outline-none focus:border-cyan-500"
+                      />
+                    </div>
+                    {/* Icon preview */}
+                    <div className="w-8 h-8 rounded-lg bg-zinc-950 border border-zinc-700/80 flex items-center justify-center p-1 flex-shrink-0" title="Pré-visualização do Ícone">
+                      <img
+                        src={watermarkIconUrl || './favicon.svg'}
+                        alt="Icon Preview"
+                        className="w-full h-full object-contain"
+                        onError={(e) => {
+                          // Fallback on error
+                          (e.target as HTMLImageElement).src = './favicon.svg';
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  <span className="text-[10px] text-zinc-500 self-center mr-1">Atalhos de Ícone:</span>
+                  {[
+                    { label: 'Favicon SVG', url: './favicon.svg' },
+                    { label: 'App Icon SVG', url: './icon.svg' },
+                    { label: 'Sem Ícone', url: '' }
+                  ].map((preset) => (
+                    <button
+                      key={preset.label}
+                      type="button"
+                      onClick={() => setWatermarkIconUrl(preset.url)}
+                      className={`text-[10px] px-2 py-0.5 rounded border transition-all ${
+                        watermarkIconUrl === preset.url
+                          ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40'
+                          : 'bg-zinc-800/80 text-zinc-400 border-zinc-700/50 hover:text-zinc-200'
+                      }`}
+                    >
+                      {preset.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Final Dimensions Summary Card */}

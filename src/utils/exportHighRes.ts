@@ -91,14 +91,49 @@ export async function renderHighResArtwork(
     }
   }
 
-  // Watermark if requested
-  if (options.includeWatermark && options.watermarkText) {
+  // Watermark / Icon Branding if requested
+  if (options.includeWatermark) {
     ctx.save();
-    ctx.font = `600 ${Math.max(14, Math.floor(width * 0.015))}px sans-serif`;
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-    ctx.textAlign = 'right';
+    const margin = Math.max(16, Math.floor(width * 0.03));
+    const fontSize = Math.max(14, Math.floor(width * 0.015));
+    ctx.font = `600 ${fontSize}px sans-serif`;
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
     ctx.textBaseline = 'bottom';
-    ctx.fillText(options.watermarkText, width - Math.floor(width * 0.03), height - Math.floor(height * 0.03));
+
+    let rightOffset = width - margin;
+    const bottomPos = height - margin;
+
+    // Measure text width if text provided
+    const text = options.watermarkText || '';
+    if (text) {
+      ctx.textAlign = 'right';
+      ctx.fillText(text, rightOffset, bottomPos);
+      const metrics = ctx.measureText(text);
+      rightOffset -= (metrics.width + fontSize * 0.6);
+    }
+
+    // Draw icon image if watermarkIconUrl provided
+    if (options.watermarkIconUrl) {
+      try {
+        const iconImg = new Image();
+        iconImg.crossOrigin = 'anonymous';
+        await new Promise<void>((resolve, reject) => {
+          iconImg.onload = () => resolve();
+          iconImg.onerror = () => resolve(); // gracefully skip if fails to load
+          iconImg.src = options.watermarkIconUrl!;
+        });
+
+        if (iconImg.complete && iconImg.naturalWidth > 0) {
+          const iconSize = Math.max(20, Math.floor(fontSize * 1.4));
+          const iconX = text ? rightOffset - iconSize : width - margin - iconSize;
+          const iconY = bottomPos - iconSize + (fontSize * 0.15);
+          ctx.globalAlpha = 0.55;
+          ctx.drawImage(iconImg, iconX, iconY, iconSize, iconSize);
+        }
+      } catch (err) {
+        console.warn('Could not draw watermark icon:', err);
+      }
+    }
     ctx.restore();
   }
 

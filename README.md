@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./public/favicon.svg" width="96" height="96" alt="AuraGen Studio Icon" />
+</p>
+
 # 🌌 AuraGen Studio — Arte Generativa Abstrata & Algoritmos Complexos
 
 > **Estúdio profissional de arte generativa abstrata no navegador**, permitindo criar obras visuais impressionantes utilizando equações matemáticas avançadas, física de partículas, teoria do caos e morfogênese biológica. Desenvolvido em **React 19 + TypeScript + Tailwind CSS** com suporte a exportação em **Ultra Alta Resolução (até 8K e SVG)**, compatibilidade total com **Mobile / Desktop** e pronto para publicação no **GitHub Pages**.

@@ -66,10 +66,12 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Brand & Algorithm Selector */}
       <div className="flex items-center gap-2 sm:gap-4">
         <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-fuchsia-500 p-0.5 shadow-lg shadow-indigo-500/20">
-            <div className="w-full h-full bg-zinc-950 rounded-[10px] flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-            </div>
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-fuchsia-500 p-0.5 shadow-lg shadow-indigo-500/20 flex-shrink-0">
+            <img
+              src="./favicon.svg"
+              alt="AuraGen Studio Icon"
+              className="w-full h-full rounded-[10px] object-cover"
+            />
           </div>
           <div className="hidden md:block">
             <h1 className="text-sm font-bold tracking-wider uppercase text-zinc-100 flex items-center gap-1.5">
